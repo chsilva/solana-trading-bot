@@ -3,7 +3,7 @@ import { Connection } from '@solana/web3.js';
 import { LiquidityPoolKeysV4 } from '@raydium-io/raydium-sdk';
 import { getPdaMetadataKey } from '@raydium-io/raydium-sdk';
 import { MetadataAccountData, MetadataAccountDataArgs } from '@metaplex-foundation/mpl-token-metadata';
-import { Serializer } from '@metaplex-foundation/umi/serializers';
+import { Serializer } from '@metaplex-foundation/umi-serializers';
 import { logger } from '../helpers';
 
 export class MutableFilter implements Filter {
@@ -61,6 +61,6 @@ export class MutableFilter implements Filter {
   private async hasSocials(metadata: MetadataAccountData) {
     const response = await fetch(metadata.uri);
     const data = await response.json();
-    return Object.values(data?.extensions ?? {}).some((value: any) => value !== null && value.length > 0);
+    return Object.values(data?.extensions ?? {}).filter((value: any) => value).length > 0;
   }
 }

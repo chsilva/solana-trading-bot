@@ -1,6 +1,6 @@
 import { Logger } from 'pino';
 import dotenv from 'dotenv';
-import { Commitment } from '@solana/web3.js';
+import { Commitment, Finality } from '@solana/web3.js';
 import { logger } from './logger';
 
 dotenv.config();
@@ -16,10 +16,11 @@ const retrieveEnvVariable = (variableName: string, logger: Logger) => {
 
 // Wallet
 export const PRIVATE_KEY = retrieveEnvVariable('PRIVATE_KEY', logger);
+export const PF_MIGRATION_WALLET = retrieveEnvVariable('PF_MIGRATION_WALLET', logger);
 
 // Connection
 export const NETWORK = 'mainnet-beta';
-export const COMMITMENT_LEVEL: Commitment = retrieveEnvVariable('COMMITMENT_LEVEL', logger) as Commitment;
+export const COMMITMENT_LEVEL: Commitment = retrieveEnvVariable('COMMITMENT_LEVEL', logger) as Commitment | Finality;
 export const RPC_ENDPOINT = retrieveEnvVariable('RPC_ENDPOINT', logger);
 export const RPC_WEBSOCKET_ENDPOINT = retrieveEnvVariable('RPC_WEBSOCKET_ENDPOINT', logger);
 

@@ -141,10 +141,12 @@ const runListener = async () => {
   logger.level = LOG_LEVEL;
   logger.info('Bot is starting...');
 
+  logger.info('Getting Market...')
   const marketCache = new MarketCache(connection);
+  logger.info('Getting Pool...')
   const poolCache = new PoolCache();
   let txExecutor: TransactionExecutor;
-
+  
   switch (TRANSACTION_EXECUTOR) {
     case 'warp': {
       txExecutor = new WarpTransactionExecutor(CUSTOM_FEE);

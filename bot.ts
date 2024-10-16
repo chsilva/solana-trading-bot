@@ -138,7 +138,7 @@ export class Bot {
         const match = await this.filterMatch(poolKeys);
 
         if (!match) {
-          logger.trace({ mint: poolKeys.baseMint.toString() }, `Skipping buy because pool doesn't match filters`);
+          logger.trace({}, `Skipping buy because pool doesn't match filters ${poolKeys.baseMint.toString()}`);
           return;
         }
       }
